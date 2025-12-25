@@ -170,9 +170,9 @@
         <h1 class="title">Feliz Navidad</h1>
       </div>
 
-      <!-- Música navideña (MP3 directo - estable) -->
-      <audio id="audio" preload="auto" loop crossorigin="anonymous">
-        <source src="https://upload.wikimedia.org/wikipedia/commons/3/3c/We_Wish_You_a_Merry_Christmas_%28ISRC_USUAN1100369%29.mp3" type="audio/mpeg">
+      <!-- Música local -->
+      <audio id="audio" preload="auto" loop>
+        <source src="musica.mp3" type="audio/mpeg">
       </audio>
 
     </div>
@@ -496,7 +496,6 @@
 
         try{
           if(audio.paused){
-            // No forzamos load() cada vez (eso puede interrumpir play en algunos navegadores)
             audio.muted = false;
 
             const p = audio.play();
@@ -508,7 +507,6 @@
             btnMusic.setAttribute('aria-pressed', 'false');
           }
         }catch(e){
-          // Si fue AbortError (play interrumpido), reintenta una sola vez muy rápido
           if (e && e.name === "AbortError") {
             try{
               await new Promise(r => setTimeout(r, 120));
